@@ -9,6 +9,7 @@ var latitude2 = 0;
 var longitude2 = 0;
 var oldDistance = 0;
 var num = 1;
+var message = '';
 
 function chooseTarget() {
   address = "Dallas, tx";
@@ -28,7 +29,7 @@ chooseTarget();
 function initialize() {
   map = new google.maps.Map(
     document.getElementById("map_canvas"), {
-      center: new google.maps.LatLng(33.8725, -84.3726),
+      center: new google.maps.LatLng(40, -100),
       zoom: 2,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -80,14 +81,15 @@ function getDistance(latitude1, longitude1) {
   console.log(distance);
   console.log(oldDistance);
   if (distance < 30000) {
-    console.log("Got it!!");
+    message = "Got it!!";
   } else if (oldDistance === 0) {
-    console.log("Guess Again!!");
+    message = "Guess Again!!";
   } else if (oldDistance < distance) {
-    console.log("Colder");
+    message = "Colder";
   } else {
-    console.log("Warmer");
+    message = "Warmer";
   }
   oldDistance = distance;
+  console.log(message);
 }
 google.maps.event.addDomListener(window, "load", initialize);
