@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+</head>
+<body>
+
+    <div id="container">
+        <label for="email-input">email address:</label>
+        <input id="email-input" label="Email address">
+        <label for="hometown-input">Hometown:</label>
+        <input id="hometown-input" label="Your hometown">
+        <label for="password1-input">Create a password:</label>
+        <input id="password1-input" label="Create a password">
+        <label for="password2-input">Re-enter password:</label>
+        <input id="password2-input" label="Re-Enter your password">
+        <button id="submit1" text="Join">Join</button>
+
+        <div id="response"></div>
+
+    </div>
+    <!-- scripts js file start here-->
+
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBDM99ZrsLu4tolJ_HzLJdqCH5b0O1RoJo",
+            authDomain: "ronaldtestproject2.firebaseapp.com",
+            databaseURL: "https://ronaldtestproject2.firebaseio.com",
+            projectId: "ronaldtestproject2",
+            storageBucket: "ronaldtestproject2.appspot.com",
+            messagingSenderId: "976377199219"
+          };
+          firebase.initializeApp(config);
+     
+//////////// new variables ronald.chaudry\\\\\\\\\\\\\
+var db = firebase.database();
+var email = "";
+var hometown = "";
+var password1 = "";
+var password2 = "";
+///////////End new variables\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+////////////SignUp ronald.chaudry\\\\\\\\\\\\
+$("#submit1").on("click", function (events) { //signUp () {
+  email = $("#email-input").val().trim();
+  hometown = $("#hometown-input").val().trim();
+  password1 = $("#password1-input").val().trim();
+  password2 = $("#password2-input").val().trim();
+
+  /// checking password////
+  if (password1 != password2) {
+    alert("Your passwords did not match")
+  }
+  else {
+    validateEmail();
+    }
+    //Check if it's a valid emailaddress
+    function validateEmail() {
+        console.log("The email address submitted is " + email);
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(email.match(mailformat)) {
+            console.log("The address "+ email + " submitted is in email address format");
+            dbWrite();
+        }
+        else
+        {
+        $("#response").text(email + " is not a valid email address");
+
+        }                                       ///rchaud-it still registers if passwords dont match
+    }
+
+function dbWrite() {
+db.ref('/users').set({
+          email: email,
+          password: password1,
+          hometown: hometown,
+      }, function (errorObject) {
+          console.log("Error returned: " + errorObject);// Doesnt seem to like "code);""
+      });
+    }
+});
+        
+    </script>
+    
+</body>
+</html>
