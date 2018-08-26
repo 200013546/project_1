@@ -1,5 +1,6 @@
 html,
 body,
+background-image: url("cityImage.jpg");
 #map_canvas {
   height: 400px;
   width: 600px;
