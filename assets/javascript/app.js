@@ -13,28 +13,33 @@ var lineColors = [];
 var population = 0;
 var state = '';
 var marker = '';
+var clues = [];
 var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-var goldStar = {
-  path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-  fillColor: 'yellow',
-  fillOpacity: 0.8,
-  scale: 2,
-  strokeColor: 'gold',
-  strokeWeight: 14
-};
+var audioElementw = document.createElement("audio");
+audioElementw.setAttribute("src", "assets/sounds/TaDa.mp3");
+var audioElementl = document.createElement("audio");
+audioElementl.setAttribute("src", "assets/sounds/beep-10.mp3");
+var audioElementWarmer = document.createElement("audio");
+audioElementWarmer.setAttribute("src", "assets/sounds/warmer.wav");
+var audioElementColder = document.createElement("audio");
+audioElementColder.setAttribute("src", "assets/sounds/colder.wav");
+var audioElementStartup = document.createElement("audio");
+audioElementStartup.setAttribute("src", "assets/sounds/startup.wav");
+var audioElementSplash = document.createElement("audio");
+audioElementSplash.setAttribute("src", "assets/sounds/splash.wav");
 
 
 // Initialize google maps
 function initialize() {
   map = new google.maps.Map(
     document.getElementById("map_canvas"), {
-      center: new google.maps.LatLng(40, -100),
-      zoom: 4,
+      center: new google.maps.LatLng(40, -96),
+      zoom: 3.8,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
   google.maps.event.addListener(map, 'click', function (e) {
     markerText = "Guess # " + num;
-    formStr = "<input type='hidden' id='text4mrkr' value='" + markerText + "' /><input type='button' value='submit' onclick='addPlace();' />"
+    formStr = "<input type='hidden' id='text4mrkr' value='" + markerText + "' /><input type='button' value='" + markerText + "' onclick='addPlace();' />"
     infowindow.setContent(formStr);
     infowindow.setPosition(e.latLng);
     infowindow.open(map);
@@ -47,6 +52,8 @@ function initialize() {
 function chooseTarget() {
   // Get city
   targetCity = Math.floor(Math.random() * 40) + 1;
+  // targetCity = 1;
+  state = cities[targetCity].state;
   var address = cities[targetCity].city + "," + cities[targetCity].state;
   population = cities[targetCity].pop18;
   queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCwNeT8z4JXX1AvxPPQZVxcBxpAbmqkf0c";
@@ -58,6 +65,7 @@ function chooseTarget() {
     latitude2 = response.results[0].geometry.location.lat;
     longitude2 = response.results[0].geometry.location.lng;
     getWeather();
+    getGif();
   });
 }
 
@@ -91,13 +99,20 @@ function addPlace() {
     url: streetLocation,
     method: "GET"
   }).then(function (response) {
+    console.log(response.results);
     stateArrayLength = response.results.length;
     statePos = stateArrayLength - 2;
-    state = response.results[statePos].address_components[0].long_name;
-    state = state.replace(" ", "-");
-    image = "assets/images/stateFlags/" + state + "-Flag-32.png";
-    if (!state) {
-      image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    console.log(statePos);
+    if (statePos < 0) {
+      image = 'assets/images/swimming.png';
+      audioElementSplash.play();
+    } else {
+      state = response.results[statePos].address_components[0].long_name;
+      console.log(state);
+      if (state !== '') {
+        state = state.replace(" ", "-");
+        image = "assets/images/stateFlags/" + state + "-Flag-32.png";
+      }
     }
 
     // Create marker here
@@ -125,38 +140,60 @@ function addPlace() {
 // Function to find distance and tell hot or cold
 function getDistance(latitude1, longitude1) {
   var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(latitude1, longitude1), new google.maps.LatLng(latitude2, longitude2));
-  if (distance < 30000) {
+  if (distance < 50000) {
     message = "Got it!!";
     lineColor = "#00AA00";
     foundIt();
   } else if (oldDistance === 0 && distance > 5000000) {
     message = "Ice Cold!!";
     lineColor = "#0000FF";
+    audioElementColder.play();
   } else if (oldDistance === 0) {
     message = "Guess Again!!";
     lineColor = "#FFFFFF";
+    audioElementStartup.play();
   } else if (oldDistance < distance) {
     message = "Colder";
     lineColor = "#00AAFF";
+    audioElementColder.play();
   } else if (oldDistance < distance && distance > 300000) {
     message = "Very Cold!!";
     lineColor = "#002AFF";
+    audioElementColder.play();
   } else if (oldDistance > distance && distance < 250000) {
     message = "HOT!!";
     lineColor = "#FF0000";
+    audioElementWarmer.play();
   } else {
     message = "Warmer";
     lineColor = "#FF7F00";
+    audioElementWarmer.play();
   }
   oldDistance = distance;
-  $("#result-display").text(message);
   lineColors.push(lineColor);
+
+  // Post status if wanted
+  $("#result-display").text(message);
+
+  // Generate clue to give
+  if (num < clues.length) {
+    fieldFix = clues[num].field.replace('_',' ');
+    clueMessage = fieldFix + " is " + clues[num].value;
+    $("#clue-display").text(clueMessage);
+  }
 }
 
 // Once location is found, we can let them know
 function foundIt() {
-  map.setCenter(new google.maps.LatLng(40, -100));
-  map.setZoom(3.9);
+  audioElementw.play();
+  // console.log(theState);
+  if (theState === "Hawaii" || theState === "Alaska") {
+    map.setCenter(new google.maps.LatLng(40, -120));
+    map.setZoom(3);
+  } else {
+    map.setCenter(new google.maps.LatLng(40, -96));
+    map.setZoom(3.8);
+  }
   var gnum = num - 1;
   $("#win-display").text(message + " - " + gnum + " tries!!");
 }
@@ -172,10 +209,39 @@ function getWeather() {
   }).then(function (response) {
     temperature = Math.floor((response.main.temp - 273.15) * 1.8) + 32;
     humidity = response.main.humidity;
+    weather = response.weather[0].description;
     $("#weather-display").text("Temp: " + temperature + " Humidity: " + humidity + "% Weather: " + response.weather[0].description + " Population: " + population);
+    clues.push({
+      "field": "Temperature",
+      "value": temperature
+    });
+    clues.push({
+      "field": "Humidity",
+      "value": humidity
+    });
+    clues.push({
+      "field": "Weather",
+      "value": weather
+    });
+    clues.push({
+      "field": "Population",
+      "value": population
+    });
   })
 };
 
+function getGif() {
+  var gifnum = Math.floor(Math.random() * 10);
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=r&api_key=dc6zaTOxFJmzC&limit=10";
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
+    var imageGif = $("<iframe>");
+    imageGif.attr("src", response.data[gifnum].embed_url);
+    $("#gifs-view").html(imageGif);
+  });
+}
 
 // Begin program here to choose target
 chooseTarget();
