@@ -1,9 +1,35 @@
 html,
 body,
-background-image: url("cityImage.jpg");
 #map_canvas {
   height: 400px;
   width: 600px;
   margin: 0px;
   padding: 0px
 }
+
+.gameBoard {
+	color: white;
+}
+
+.btn-primary {
+	background-color: blue;
+	color: white;
+	font-family: 'Hanalei Fill';
+	font-family: 'Righteous';
+	font-size: 40px;
+	padding-left: 10px;
+	padding-right:10px;
+	margin-top: 200px;
+	float: left;
+	border-radius: 20px;
+	border-color: blue
+}
+.btn-primary:hover {
+	background-color: #f86502;
+}
+.map_canvas {
+	height: 500px;          
+	width: 700px;
+	border-block-end-style: outset;
+	border-radius: 30px;
+  }

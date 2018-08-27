@@ -176,6 +176,15 @@ function getWeather() {
   })
 };
 
+$('#startBtn').on('click', function(){
+	$(this).hide();
+	initialize();
+});
+
+$('#backBtn').on('click', function(){
+	$(this).hide();
+	initialize();
+});
 
 // Begin program here to choose target
 chooseTarget();
