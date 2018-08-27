@@ -230,6 +230,7 @@ function getWeather() {
   })
 };
 
+
 function getGif() {
   var gifnum = Math.floor(Math.random() * 10);
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=r&api_key=dc6zaTOxFJmzC&limit=10";
@@ -242,6 +243,16 @@ function getGif() {
     $("#gifs-view").html(imageGif);
   });
 }
+
+$('#startBtn').on('click', function(){
+	$(this).hide();
+	initialize();
+});
+
+$('#backBtn').on('click', function(){
+	$(this).hide();
+	initialize();
+});
 
 // Begin program here to choose target
 chooseTarget();
