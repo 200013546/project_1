@@ -32,7 +32,7 @@ var cities = [{ state: "Alabama", city: "Montgomery", pop10: "205,764", pop18: "
 { state: "New York", city: "Albany", pop10: "97,856", pop18: "97,797" },
 { state: "North Carolina", city: "Raleigh", pop10: "403,892", pop18: "476,746" },
 { state: "North Dakota", city: "Bismarck", pop10: "61,272", pop18: "74,711" },
-{ state: "Ohio", city: "Columbus", pop10: "787,033", pop18: "880,182" },
+// { state: "Ohio", city: "Columbus", pop10: "787,033", pop18: "880,182" },
 { state: "Oklahoma", city: "Oklahoma City", pop10: "579,999", pop18: "653,865" },
 { state: "Oregon", city: "Salem", pop10: "154,637", pop18: "173,819" },
 { state: "Pennsylvania", city: "Harrisburg", pop10: "49,528", pop18: "48,572" },
