@@ -9,17 +9,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var dataRef = firebase.database();
+// var dataRef = firebase.database();
 
-var name = 'Alan';
-var email = 'alan@alanmccabe.com';
+// var name = 'Alan';
+// var email = 'alan@alanmccabe.com';
 
-dataRef.ref("mapProject").push({
+// dataRef.ref("mapProject").push({
 
-    name: name,
-    email: email,
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
-});
+//     name: name,
+//     email: email,
+//     dateAdded: firebase.database.ServerValue.TIMESTAMP
+// });
 
 
 

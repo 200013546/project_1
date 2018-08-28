@@ -29,6 +29,9 @@ audioElementStartup.setAttribute("src", "assets/sounds/startup.wav");
 var audioElementSplash = document.createElement("audio");
 audioElementSplash.setAttribute("src", "assets/sounds/splash.wav");
 
+// Determine user with sessionStorage
+var cityUser = sessionStorage.getItem("cityuser");
+console.log(cityUser);
 
 // Initialize google maps
 function initialize() {
@@ -221,6 +224,20 @@ function foundIt() {
   }
   var gnum = num - 1;
   $("#win-display").text(message + " - " + gnum + " tries!!");
+
+  // Put in firebase
+  var dataRef = firebase.database();
+  // var email = 'alan@alanmccabe.com';
+
+  dataRef.ref("mapProject").push({
+
+    email: cityUser,
+    score: gnum,
+    state: theState,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
+
 }
 
 // ACCESS CLUES IN THIS AREA -----------------------------------
