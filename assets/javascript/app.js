@@ -29,6 +29,9 @@ audioElementStartup.setAttribute("src", "assets/sounds/startup.wav");
 var audioElementSplash = document.createElement("audio");
 audioElementSplash.setAttribute("src", "assets/sounds/splash.wav");
 
+// Determine user with sessionStorage
+var cityUser = sessionStorage.getItem("cityuser");
+console.log(cityUser);
 
 // Initialize google maps
 function initialize() {
