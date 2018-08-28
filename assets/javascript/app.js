@@ -224,6 +224,20 @@ function foundIt() {
   }
   var gnum = num - 1;
   $("#win-display").text(message + " - " + gnum + " tries!!");
+
+  // Put in firebase
+  var dataRef = firebase.database();
+  // var email = 'alan@alanmccabe.com';
+
+  dataRef.ref("mapProject").push({
+
+    email: cityUser,
+    score: gnum,
+    state: theState,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
+
 }
 
 // ACCESS CLUES IN THIS AREA -----------------------------------
@@ -270,16 +284,6 @@ function getGif() {
     $("#gifs-view").html(imageGif);
   });
 }
-
-$('#startBtn').on('click', function(){
-	$(this).hide();
-	initialize();
-});
-
-$('#backBtn').on('click', function(){
-	$(this).hide();
-	initialize();
-});
 
 // Begin program here to choose target
 chooseTarget();
