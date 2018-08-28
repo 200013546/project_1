@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Map Project 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyApHOEUhtoYCvUzUhAxZvab01C_4blYeEQ&v=3&libraries=geometry"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -26,16 +29,10 @@
 </head>
 
 <body>
-    <style>
-        html,body{
-            background-image: url("cityImage.jpg");
-        }
-    </style>
 
-    <div class="container"></div>
-        <button class="btn btn-restart" onClick="window.open('./index.html', '_top')"id="backBtn">Start Again</button> 
+        <div class="float-right"><button class="btn btn-restart" onClick="window.open('./index.html', '_top')"id="backBtn">Start Again</button></div>
     </div>
-
+    <div class="container"></div>
     <div id="map_canvas"></div>
     <div id="win-display"></div>
     <div id="result-display"></div>
