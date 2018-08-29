@@ -1,0 +1,619 @@
+$linen: #E9E2D5;
+$oyster: #D4C1AB;
+$pewter: #857567;
+$lemon: #DFB72C;
+
+$font: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+$padding: 12px;
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+*:focus { outline: none!important; }
+body, html { height: 100%; }
+body {
+	background: white;
+	margin: 0;
+	font-family: $font;
+	color: $pewter;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+main {
+	background: white;
+	height: 100%;
+	aside {
+		position: relative;
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+		height: calc(100% / 3);
+		padding: $padding;
+		background: #DFB72C url('https://images.unsplash.com/photo-1443131307017-4097c8ac7763?dpr=2&auto=format&fit=crop&w=1500&h=1909&q=80&cs=tinysrgb') no-repeat center center / cover;
+		div:empty {
+			opacity: 0.5;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #DFB72C url('https://images.unsplash.com/photo-1443131307017-4097c8ac7763?dpr=2&auto=format&fit=crop&w=1500&h=1909&q=80&cs=tinysrgb') no-repeat center center / cover;
+			background-blend-mode: screen;
+		}
+		svg {
+			position: relative;
+			margin-top: -$padding*2;
+			width: 150px;
+			height: 150px;
+		}
+		div:not(:empty) {
+			position: relative;
+			width: 100%;
+			margin-top: -$padding*2;
+		}
+		p {
+			position: relative;
+			width: 100%;
+			margin: 0;
+			color: white;
+			font-size: 18px;
+			line-height: 1.2;
+			text-align: center;
+			text-shadow: 0 0 10px rgba($pewter, .5);
+			strong {
+				font-weight: 700;
+			}
+			&:nth-child(2) {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			&.active {
+				visibility: visible;
+				opacity: 1;
+				transform: none;
+			}
+			&:not(.active) {
+				visibility: hidden;
+				opacity: 0;
+				transform: translateY(100px);
+			}
+		}
+	}
+	section {
+		position: relative;
+		height: calc(100% / 3 * 2);
+		h1 {
+			display: flex;
+			justify-content: center;
+			padding: $padding;
+			color: $lemon;
+			font-size: 28px;
+			line-height: 1;
+			text-align: center;
+			text-transform: lowercase;
+			a {
+				display: block;
+				margin: 0 $padding/2;
+				cursor: pointer;
+				transform: none;
+				&:hover, &:focus {
+					color: saturate(darken($oyster, 35%), 15%);
+				}
+				&:active {
+					color: $pewter;
+				}
+				&.active {
+					font-weight: 500;
+				}
+				&:not(.active) {
+					font-weight: 300;
+				}
+			}
+		}
+		form {
+			display: flex;
+			flex-flow: row wrap;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: calc(100% - 40px);
+			> div, > ul {
+				width: 100%;
+				padding: $padding/2;
+			}
+			fieldset {
+				padding: $padding/2;
+				div {
+					display: flex;
+					border-radius: 2px;
+					overflow: hidden;
+					label {
+						display: block;
+						margin: 0;
+						padding: $padding/2 $padding*0.75;
+						background: $lemon;
+						color: white;
+						font-size: 16px;
+						cursor: pointer;
+						line-height: 25px;
+					}
+					input {
+						display: block;
+						background: white;
+						border: 1px solid $lemon;
+						border-left: 0;
+						border-radius: 0 2px 2px 0;
+						box-shadow: none;
+						margin: 0;
+						padding: $padding/2 $padding*0.75;
+						width: 100%;
+						color: $pewter;
+						font-family: $font;
+						font-size: 16px;
+						&::placeholder {
+							color: rgba($pewter, .4);
+						}
+						&:focus {
+							background: rgba($linen, .5);
+							&::placeholder {
+								color: rgba($pewter, .6);
+							}
+						}
+					}
+				}
+			}
+			li {
+				padding: $padding/2;
+				button {
+					display: block;
+					margin: 0 auto;
+					appearance: none;
+					font-family: $font;
+					border: 0;
+					border-radius: 100px;
+					color: white;
+					font-size: 16px;
+					padding: $padding/2 $padding;
+					cursor: pointer;
+					&.fb {
+						background: #3b5998;
+						&:hover, &:focus {
+							background: lighten(#3b5998, 15%);
+						}
+						&:active {
+							background: darken(#3b5998, 15%);
+						}
+					}
+					&.tw {
+						background: #00aced;
+						&:hover, &:focus {
+							background: lighten(#00aced, 15%);
+						}
+						&:active {
+							background: darken(#00aced, 15%);
+						}
+					}
+				}
+			}
+			input[type="submit"] {
+				display: block;
+				align-self: flex-end;
+				appearance: none;
+				width: 100%;
+				margin: 0;
+				border: 0;
+				border-radius: 0;
+				font-family: $font;
+				font-size: 24px;
+				text-transform: lowercase;
+				line-height: 2;
+				background: $lemon;
+				color: white;
+				cursor: pointer;
+				&:hover, &:focus {
+					background: saturate(darken($oyster, 35%), 15%);
+				}
+				&:active {
+					background: $pewter;
+				}
+			}
+			&.active {
+				opacity: 1;
+				z-index: 1;
+				fieldset, li, input[type="submit"] {
+					transform: translateY(0px);
+					opacity: 1;
+				}
+			}
+			&:not(.active) {
+				opacity: 0;
+				z-index: 0;
+				fieldset, li, input[type="submit"] {
+					transform: translateY(100px);
+					opacity: 0;
+				}
+			}
+		}
+	}
+	&.with-hover {
+		aside {
+			p {
+				transition: all 250ms ease-out;
+			}
+		}
+		section {
+			h1 {
+				a {
+					transition: all 150ms ease-out;
+					&:hover, &:focus {
+						transition: all 300ms ease-out;
+					}
+					&:active {
+						transition: all 150ms ease-in;
+					}
+				}
+			}
+			form {
+				transition: all 1000ms ease-out;
+				fieldset, li, input[type="submit"] {
+					transition: all 500ms ease-out;
+				}
+				button, input {
+					transition: all 150ms ease-out;
+					&:hover, &:focus {
+						transition: all 300ms ease-out;
+					}
+					&:active {
+						transition: all 150ms ease-in;
+					}
+				}
+				&.active {
+					&#form-signup {
+						fieldset {
+							&:nth-child(2) {
+								transition-delay: 50ms;
+							}
+							&:nth-child(3) {
+								transition-delay: 100ms;
+							}
+						}
+						li {
+							&:nth-child(1) {
+								transition-delay: 150ms;
+							}
+							&:nth-child(2) {
+								transition-delay: 200ms;
+							}
+						}
+						input[type="submit"] {
+							transition-delay: 250ms;
+						}
+					}
+					&#form-login {
+						fieldset {
+							&:nth-child(2) {
+								transition-delay: 50ms;
+							}
+						}
+						li {
+							&:nth-child(1) {
+								transition-delay: 100ms;
+							}
+							&:nth-child(2) {
+								transition-delay: 150ms;
+							}
+						}
+						input[type="submit"] {
+							transition-delay: 200ms;
+						}
+					}
+				}
+				&:not(.active) {
+					&#form-signup {
+						fieldset {
+							&:nth-child(1) {
+								transition-delay: 250ms;
+							}
+							&:nth-child(2) {
+								transition-delay: 200ms;
+							}
+							&:nth-child(3) {
+								transition-delay: 150ms;
+							}
+						}
+						li {
+							&:nth-child(1) {
+								transition-delay: 100ms;
+							}
+							&:nth-child(2) {
+								transition-delay: 50ms;
+							}
+						}
+					}
+					&#form-login {
+						fieldset {
+							&:nth-child(1) {
+								transition-delay: 200ms;
+							}
+							&:nth-child(2) {
+								transition-delay: 150ms;
+							}
+						}
+						li {
+							&:nth-child(1) {
+								transition-delay: 100ms;
+							}
+							&:nth-child(2) {
+								transition-delay: 50ms;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&.pre-enter {
+		aside {
+			transform-origin: center top;
+			transform: scaleY(0);
+			visibility: hidden;
+			svg {
+				transform-origin: center center;
+				transform: scale(0) rotate(90deg);
+				visibility: hidden;
+			}
+			p.active {
+				opacity: 0;
+				transform: translateY(100px);
+				visibility: hidden;
+			}
+		}
+		section {
+			h1 {
+				a {
+					visibility: hidden;
+					opacity: 0;
+					&:first-child {
+						transform-origin: right center;
+						transform: translateX(200px) scaleX(0);
+					}
+					&:last-child {
+						transform-origin: left center;
+						transform: translateX(-200px) scaleX(0);
+					}
+				}
+			}
+			form {
+				fieldset, li {
+					opacity: 0;
+					transform: translateY(100px);
+					visibility: hidden;
+				}
+				input[type="submit"] {
+					transform-origin: center bottom;
+					transform: scaleY(0);
+					color: $lemon;
+					visibility: hidden;
+				}
+			}
+		}
+	}
+	&.on-enter {
+		aside {
+			animation: scaleYIn 1000ms linear forwards;
+			visibility: visible;
+			svg {
+				animation: bounceIn-rotate 1000ms linear forwards 250ms;
+				visibility: visible;
+			}
+			p.active {
+				animation: slideInUp-fadeIn 1000ms linear forwards 500ms;
+				visibility: visible;
+			}
+		}
+		section {
+			h1 {
+				a {
+					visibility: visible;
+					&:first-child {
+						animation: scaleX-slideInRight 1000ms linear forwards 750ms;
+					}
+					&:last-child {
+						animation: scaleX-slideInLeft 1000ms linear forwards 750ms;
+					}
+				}
+			}
+			form {
+				fieldset, li {
+					animation: slideInUp-fadeIn 1000ms linear forwards;
+					visibility: visible;
+				}
+				fieldset {
+					&:nth-child(1) {
+						animation-delay: 1250ms;
+					}
+					&:nth-child(2) {
+						animation-delay: 1350ms;
+					}
+					&:nth-child(3) {
+						animation-delay: 1450ms;
+					}
+				}
+				li {
+					&:nth-child(1) {
+						animation-delay: 1550ms;
+					}
+					&:nth-child(2) {
+						animation-delay: 1650ms;
+					}
+				}
+				input[type="submit"] {
+					animation: scaleYIn 1000ms linear forwards 1750ms, lemon-white 250ms linear forwards 2150ms;
+					visibility: visible;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 624px) {
+	body {
+		display: flex;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+		background: desaturate(darken($pewter, 15%), 10%);
+	}
+	main {
+		display: flex;
+		border-radius: 2px;
+		overflow: hidden;
+		height: 100%;
+		max-height: 400px;
+		box-shadow: 0 0 10px rgba(desaturate(darken($pewter, 25%), 10%), 0.5);
+		aside, section {
+			height: 100%;
+			width: 300px;
+		}
+		&.pre-enter {
+			opacity: 0;
+			visibility: hidden;
+			aside {
+				transform: none;
+			}
+		}
+		&.on-enter {
+			animation: slideDown-fadeIn 1000ms linear forwards;
+			visibility: visible;
+			aside {
+				animation: none;
+			}
+		}
+	}
+}
+
+@keyframes lemon-white {
+	0% { color: $lemon; }
+	100% { color: white; }
+}
+
+/* https://goo.gl/U6p2Ra */
+@keyframes slideDown-fadeIn { 
+	0% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -400, 0, 1); opacity: 0; }
+	4% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -227.213, 0, 1); }
+	7.91% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -44.516, 0, 1); }
+	11.91% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 75.765, 0, 1); }
+	15.82% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 110.328, 0, 1); opacity: 1; }
+	20.42% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 78.474, 0, 1); }
+	24.92% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 23.745, 0, 1); }
+	29.53% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -16.119, 0, 1); }
+	34.03% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -27.704, 0, 1); }
+	43.14% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -5.859, 0, 1); }
+	52.15% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 6.958, 0, 1); }
+	70.37% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -1.747, 0, 1); }
+	88.59% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.439, 0, 1); }
+	100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity: 1; } 
+}
+
+/* https://goo.gl/gsBg5l */
+@keyframes scaleYIn { 
+	0% { transform: matrix3d(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	4% { transform: matrix3d(1, 0, 0, 0, 0, 0.432, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	7.91% { transform: matrix3d(1, 0, 0, 0, 0, 0.889, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	11.91% { transform: matrix3d(1, 0, 0, 0, 0, 1.189, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	15.82% { transform: matrix3d(1, 0, 0, 0, 0, 1.276, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	20.42% { transform: matrix3d(1, 0, 0, 0, 0, 1.196, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	24.92% { transform: matrix3d(1, 0, 0, 0, 0, 1.059, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	29.53% { transform: matrix3d(1, 0, 0, 0, 0, 0.96, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	34.03% { transform: matrix3d(1, 0, 0, 0, 0, 0.931, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	43.14% { transform: matrix3d(1, 0, 0, 0, 0, 0.985, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	52.15% { transform: matrix3d(1, 0, 0, 0, 0, 1.017, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	70.37% { transform: matrix3d(1, 0, 0, 0, 0, 0.996, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	88.59% { transform: matrix3d(1, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+
+/* https://goo.gl/XC1o6q */
+@keyframes scaleX-slideInLeft {
+	0% { transform: matrix3d(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity: 0; }
+	5.71% { transform: matrix3d(0.354, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -44.297, 0, 0, 1); }
+	6.31% { transform: matrix3d(0.384, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -45.449, 0, 0, 1); }
+	11.31% { transform: matrix3d(0.583, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -42.536, 0, 0, 1); }
+	12.51% { transform: matrix3d(0.621, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -39.889, 0, 0, 1); }
+	17.02% { transform: matrix3d(0.735, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -28.059, 0, 0, 1); }
+	18.82% { transform: matrix3d(0.771, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -23.316, 0, 0, 1); }
+	22.62% { transform: matrix3d(0.832, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -14.419, 0, 0, 1); }
+	25.03% { transform: matrix3d(0.862, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -9.822, 0, 0, 1); }
+	28.33% { transform: matrix3d(0.895, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -4.859, 0, 0, 1); }
+	33.93% { transform: matrix3d(0.935, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.401, 0, 0, 1); opacity: 1; }
+	37.54% { transform: matrix3d(0.952, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 2.162, 0, 0, 1); }
+	45.15% { transform: matrix3d(0.975, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3.335, 0, 0, 1); }
+	50.05% { transform: matrix3d(0.984, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3.109, 0, 0, 1); }
+	72.57% { transform: matrix3d(0.998, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.773, 0, 0, 1); }
+	75.08% { transform: matrix3d(0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.613, 0, 0, 1); }
+	100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity: 1; } 
+}
+
+/* https://goo.gl/4dYUn6 */
+@keyframes scaleX-slideInRight {
+	0% { transform: matrix3d(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity: 0; }
+	5.71% { transform: matrix3d(0.354, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 44.297, 0, 0, 1); }
+	6.31% { transform: matrix3d(0.384, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 45.449, 0, 0, 1); }
+	11.31% { transform: matrix3d(0.583, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 42.536, 0, 0, 1); }
+	12.51% { transform: matrix3d(0.621, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 39.889, 0, 0, 1); }
+	17.02% { transform: matrix3d(0.735, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 28.059, 0, 0, 1); }
+	18.82% { transform: matrix3d(0.771, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 23.316, 0, 0, 1); }
+	22.62% { transform: matrix3d(0.832, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 14.419, 0, 0, 1); }
+	25.03% { transform: matrix3d(0.862, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 9.822, 0, 0, 1); }
+	28.33% { transform: matrix3d(0.895, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 4.859, 0, 0, 1); }
+	33.93% { transform: matrix3d(0.935, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.401, 0, 0, 1); opacity: 1; }
+	37.54% { transform: matrix3d(0.952, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2.162, 0, 0, 1); }
+	45.15% { transform: matrix3d(0.975, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3.335, 0, 0, 1); }
+	50.05% { transform: matrix3d(0.984, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3.109, 0, 0, 1); }
+	72.57% { transform: matrix3d(0.998, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.773, 0, 0, 1); }
+	75.08% { transform: matrix3d(0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.613, 0, 0, 1); }
+	100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity: 1; } 
+}
+
+/* https://goo.gl/lNPiqQ */
+@keyframes slideInUp-fadeIn { 
+	0% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 100, 0, 1); opacity: 0; }
+	5.81% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 51.656, 0, 1); }
+	11.61% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 11.991, 0, 1); }
+	17.42% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -8.985, 0, 1); }
+	23.12% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -14.246, 0, 1); }
+	30.33% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -9.789, 0, 1); }
+	37.44% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -3.262, 0, 1); }
+	44.54% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0.625, 0, 1); opacity: 1; }
+	51.65% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1.624, 0, 1); }
+	80.28% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -0.185, 0, 1); }
+	100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity: 1; } 
+}
+
+/* https://goo.gl/mrRSVv */
+@keyframes bounceIn-rotate { 
+	0% { transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	4% { transform: matrix3d(0.174, -0.395, 0, 0, 0.395, 0.174, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	6.31% { transform: matrix3d(0.405, -0.588, 0, 0, 0.588, 0.405, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	7.91% { transform: matrix3d(0.583, -0.67, 0, 0, 0.67, 0.583, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	11.91% { transform: matrix3d(0.965, -0.695, 0, 0, 0.695, 0.965, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	12.51% { transform: matrix3d(1.006, -0.681, 0, 0, 0.681, 1.006, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	15.82% { transform: matrix3d(1.145, -0.564, 0, 0, 0.564, 1.145, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	18.82% { transform: matrix3d(1.159, -0.435, 0, 0, 0.435, 1.159, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	20.42% { transform: matrix3d(1.137, -0.371, 0, 0, 0.371, 1.137, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	24.92% { transform: matrix3d(1.034, -0.23, 0, 0, 0.23, 1.034, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	25.03% { transform: matrix3d(1.032, -0.227, 0, 0, 0.227, 1.032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	29.53% { transform: matrix3d(0.949, -0.142, 0, 0, 0.142, 0.949, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	34.03% { transform: matrix3d(0.926, -0.095, 0, 0, 0.095, 0.926, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	37.54% { transform: matrix3d(0.941, -0.071, 0, 0, 0.071, 0.941, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	43.14% { transform: matrix3d(0.984, -0.045, 0, 0, 0.045, 0.984, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	50.05% { transform: matrix3d(1.016, -0.025, 0, 0, 0.025, 1.016, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	52.15% { transform: matrix3d(1.017, -0.021, 0, 0, 0.021, 1.017, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	70.37% { transform: matrix3d(0.996, -0.003, 0, 0, 0.003, 0.996, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	75.08% { transform: matrix3d(0.997, -0.002, 0, 0, 0.002, 0.997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	88.59% { transform: matrix3d(1.001, 0, 0, 0, 0, 1.001, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+	100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
