@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>#dailyui 001: Sign Up</title>
+  <script src="https://use.typekit.net/lkh0ago.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <link rel="stylesheet" href="signupAssets/css/style.css">
+      <!-- START NEW -->
+      <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+          
+  
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Sign Up</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/javascript" src="signupAssets/js/signup.js"></script>
+
+  
+</head>
+
+<body>
+
+  <main ontouchstart class="with-hover">
+	<aside>
+		<div></div>
+		<svg viewBox="0 0 100 100">
+			<g stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+			</g>
+		</svg>
+		<div>
+			<p id="intro-signup"><strong>Cerebral City Search</strong></p><br>
+			<p id="intro-signup2">is even better with&nbsp;an&nbsp;account.</p> -->
+			<p id="intro-login" class="active">Welcome back to<br/><strong>Cerebral City Search</strong>!</p>
+		</div>
+	</aside>
+	<section>
+		<h1>
+			<a id="link-login"  class="active">Log In</a>
+			<a id="link-signup">Sign Up</a>
+		</h1>
+			<form id="form-signup">
+			<div>
+				<fieldset>
+
+				</fieldset>
+				<fieldset>
+					<div>
+						<label for="email">Email</label>
+						<input id="email-input" class="input-lg" type="email" placeholder="marcia@polo.com"/>
+					</div>
+				</fieldset>
+				<fieldset>
+					<div>
+						<label for="password1-input">Password</label>
+						<input id="password1-input" class="input-lg"  type="password" placeholder="••••••••"/>
+					</div>
+					<br>
+					<div>
+							<label for="password2-input">Confirm Password</label>
+							<input id="password2-input" class="input-lg"  type="password" placeholder="••••••••"/>
+					</div>
+				</fieldset>
+            </div>
+            <br>
+            <div id="response" class="input-lg"></div>
+
+			
+            <input id="signUp" type="submit" value="Sign Up"/>
+            
+		</form>
+		<form id="form-login"  class="active">
+			<div>
+				<fieldset>
+					<div>
+						<label for="email">Email</label>
+						<input id="email-input2" class="input-lg" type="email" placeholder="marcia@polo.com"/>
+					</div>
+				</fieldset>
+				<fieldset>
+					<div>
+						<label for="password-input2">Password</label>
+						<input id="password-input2" class="input-lg" type="password" placeholder="••••••••"/>
+					</div>
+				</fieldset>
+			</div>
+			<br>
+            <div id="response-2" class="input-lg"></div>
+			
+            <input id="sign-in" type="submit" value="Log In"/>
+		</form>
+	</section>
+</main>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
+  
+
+    <script  src="signupAssets/js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

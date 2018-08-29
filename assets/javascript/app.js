@@ -6,6 +6,7 @@ var clues = [];
 var state = '';
 var marker = '';
 var message = '';
+var dataRef = [];
 var latitude2 = 0;
 var longitude2 = 0;
 var lineColor = '';
@@ -30,7 +31,7 @@ audioElementSplash.setAttribute("src", "assets/sounds/splash.wav");
 
 // Determine user with sessionStorage
 var cityUser = sessionStorage.getItem("cityuser");
-// console.log(cityUser);
+console.log(cityUser);
 
 // Initialize google maps
 function initialize() {
@@ -283,6 +284,29 @@ function getGif() {
   });
 }
 
+// Search database for high scores
+function updateChart() {
+  var dataRef = firebase.database().ref().child('mapProject');
+
+  dataRef.on("value", function (childSnapshot) {
+    // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
+    //dataRef.ref("mapProject").on("value", function (childSnapshot) {
+    data.forEach(function(childS) {
+      console.log(childS.val().score);
+    })
+    // console.log("PAST: " + childSnapshot.val());
+    // var dateAdded = childSnapshot.val().dateadded;
+    //   var score = childSnapshot.val().score;
+    //   var state = childSnapshot.val().state;
+    //   console.log("PAST: " + dateAdded + " " + score + " " + state);
+
+  }, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
+}
+
+
 // Begin program here to choose target
+updateChart();
 chooseTarget();
 google.maps.event.addDomListener(window, "load", initialize);
