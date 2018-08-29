@@ -15,7 +15,6 @@ var coordinates = [];
 var lineColors = [];
 var population = 0;
 var infowindow = new google.maps.InfoWindow();
-var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 var audioElementwin = document.createElement("audio");
 audioElementwin.setAttribute("src", "assets/sounds/TaDa.mp3");
 var audioElementl = document.createElement("audio");
@@ -31,7 +30,7 @@ audioElementSplash.setAttribute("src", "assets/sounds/splash.wav");
 
 // Determine user with sessionStorage
 var cityUser = sessionStorage.getItem("cityuser");
-console.log(cityUser);
+// console.log(cityUser);
 
 // Initialize google maps
 function initialize() {
@@ -67,7 +66,7 @@ function chooseTarget() {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
+    // console.log(response);
     latitude2 = response.results[0].geometry.location.lat;
     longitude2 = response.results[0].geometry.location.lng;
     getWeather();
@@ -196,7 +195,7 @@ function getDistance(latitude1, longitude1) {
   // Generate clue to give
   // redo loop to create table
   clueCountNumber = num - 2;
-  console.log(clues);
+  // console.log(clues);
   if (clueCountNumber < clues.length) {
     clueTable = "<table>";
     clueTable += "<tbody>";
@@ -236,8 +235,6 @@ function foundIt() {
     state: theState,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   });
-
-
 }
 
 // ACCESS CLUES IN THIS AREA -----------------------------------
@@ -272,9 +269,10 @@ function getWeather() {
   })
 };
 
+// Giffy here to put on page
 function getGif() {
-  var gifnum = Math.floor(Math.random() * 10);
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=r&api_key=dc6zaTOxFJmzC&limit=10";
+  var gifnum = Math.floor(Math.random() * 20);
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=pg&api_key=dc6zaTOxFJmzC&limit=20";
   $.ajax({
     url: queryURL,
     method: "GET"
