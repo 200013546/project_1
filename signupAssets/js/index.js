@@ -1,11 +1,11 @@
-$("main").addClass("pre-enter").removeClass("with-hover");
+$("main").addClass("with-hover").removeClass("pre-enter");
 setTimeout(function(){
 	$("main").addClass("on-enter");
 }, 500);
 setTimeout(function(){
-	$("main").removeClass("pre-enter on-enter");
+	$("main").removeClass("with-hover");
 	setTimeout(function(){
-		$("main").addClass("with-hover");
+		$("main").addClass("pre-enter on-enter");
 	}, 50);
 }, 3000);
 
@@ -18,10 +18,16 @@ $("h1 a").click(function(){
 		setTimeout(function(){
 			$("#form-signup").addClass("active");
 			$("#intro-signup").addClass("active");
+				// rchaudry
+			$("#intro-signup2").addClass("active");
+				// rchaudry-end
 		}, 50);
 	} else {
 		$("#form-signup").removeClass("active");
 		$("#intro-signup").removeClass("active");
+			// rchaudry
+		$("#intro-signup2").removeClass("active");
+			// rchaudry-end
 		setTimeout(function(){
 			$("#form-login").addClass("active");
 			$("#intro-login").addClass("active");

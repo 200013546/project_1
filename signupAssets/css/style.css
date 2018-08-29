@@ -11,6 +11,10 @@ body, html {
   height: 100%;
 }
 
+#intro-signup, #intro-login {
+  font-size: 40px;
+}
+
 body {
   background: white;
   margin: 0;
@@ -33,7 +37,9 @@ main aside {
   justify-content: center;
   height: calc(100% / 3);
   padding: 12px;
-  background: #DFB72C url("https://images.unsplash.com/photo-1443131307017-4097c8ac7763?dpr=2&auto=format&fit=crop&w=1500&h=1909&q=80&cs=tinysrgb") no-repeat center center/cover;
+  /* background-image: url("cityImage.jpg"); */
+  background: url("https://images.unsplash.com/photo-1506383480690-db097361431d?ixlib=rb-0.3.5&s=6546806404b74ed4f0e546453c6fc087&auto=format&fit=crop&w=668&q=80");
+  /* background: #DFB72C url("https://images.unsplash.com/photo-1443131307017-4097c8ac7763?dpr=2&auto=format&fit=crop&w=1500&h=1909&q=80&cs=tinysrgb") no-repeat center center/cover; */
 }
 main aside div:empty {
   opacity: 0.5;
@@ -42,7 +48,11 @@ main aside div:empty {
   left: 0;
   width: 100%;
   height: 100%;
+  /* background-image: url("cityImage.jpg");
   background: #DFB72C url("https://images.unsplash.com/photo-1443131307017-4097c8ac7763?dpr=2&auto=format&fit=crop&w=1500&h=1909&q=80&cs=tinysrgb") no-repeat center center/cover;
+  */
+  background: url("https://images.unsplash.com/photo-1506383480690-db097361431d?ixlib=rb-0.3.5&s=6546806404b74ed4f0e546453c6fc087&auto=format&fit=crop&w=668&q=80");
+
   background-blend-mode: screen;
 }
 main aside svg {
@@ -94,7 +104,8 @@ main section h1 {
   display: flex;
   justify-content: center;
   padding: 12px;
-  color: #DFB72C;
+  /* color: #DFB72C; */
+  color: #0052cc;
   font-size: 28px;
   line-height: 1;
   text-align: center;
@@ -107,12 +118,12 @@ main section h1 a {
   -webkit-transform: none;
           transform: none;
 }
-main section h1 a:hover, main section h1 a:focus {
+/* main section h1 a:hover, main section h1 a:focus {
   color: #976a36;
 }
 main section h1 a:active {
   color: #857567;
-}
+} */
 main section h1 a.active {
   font-weight: 500;
 }
@@ -144,7 +155,10 @@ main section form fieldset div label {
   display: block;
   margin: 0;
   padding: 6px 9px;
-  background: #DFB72C;
+  /* background: #DFB72C; */
+
+  background: #0052cc;
+  /* background: #DFB72C; */
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -153,7 +167,9 @@ main section form fieldset div label {
 main section form fieldset div input {
   display: block;
   background: white;
-  border: 1px solid #DFB72C;
+  border: 1px solid #0052cc;
+
+  /* border: 1px solid #DFB72C; */
   border-left: 0;
   border-radius: 0 2px 2px 0;
   box-shadow: none;
@@ -240,12 +256,17 @@ main section form input[type="submit"] {
   font-size: 24px;
   text-transform: lowercase;
   line-height: 2;
-  background: #DFB72C;
+  background: #0052cc;
+
+  /* background: #DFB72C; */
   color: white;
   cursor: pointer;
 }
+#response, #response-2 {
+    color: red;
+}
 main section form input[type="submit"]:hover, main section form input[type="submit"]:focus {
-  background: #976a36;
+  /* background: #976a36; */
 }
 main section form input[type="submit"]:active {
   background: #857567;
@@ -462,7 +483,8 @@ main.on-enter section form input[type="submit"] {
     align-items: center;
     align-content: center;
     justify-content: center;
-    background: #52504e;
+    /* background: #52504e; */
+    background: #b5b3b0;
   }
 
   main {
@@ -474,8 +496,9 @@ main.on-enter section form input[type="submit"] {
     box-shadow: 0 0 10px rgba(56, 54, 53, 0.5);
   }
   main aside, main section {
+    /* rchaud */
     height: 100%;
-    width: 300px;
+    width: 600px;
   }
   main.pre-enter {
     opacity: 0;

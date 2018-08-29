@@ -1,8 +1,13 @@
 $(document).ready(function () {
     console.log("The document loaded is loaded");
+    // Check sessionStorage to see if we have an entry there
+    // Determine user with sessionStorage
+    var cityUser = sessionStorage.getItem("cityuser");
+    console.log(cityUser);
+    if (cityUser !== null) {
+        window.location.href = "map.html";
+    }
 
-
-    // Initialize Firebase
     var config = {
         apiKey: "AIzaSyBz-H7b5a7rmeZ-PmrfPPRegWmXCwchuW8",
         authDomain: "gegt-alan8-18.firebaseapp.com",
@@ -80,7 +85,7 @@ $(document).ready(function () {
             console.log("sent to firebase");
             $(".input-lg").text("");
             $(".input-lg").val("");
-            window.location.href = "index.html";
+            window.location.href = "map.html";
         }
 
     });
@@ -107,6 +112,6 @@ $(document).ready(function () {
         sessionStorage.clear();
         sessionStorage.setItem("cityuser", email);
         console.log("user " + email + " is attempting to login 2");
-        window.location.href = "index.html";
+        window.location.href = "map.html";
     }); //sign-in
 }); //doc.ready
