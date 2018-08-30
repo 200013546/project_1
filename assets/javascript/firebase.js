@@ -10,29 +10,3 @@ var config = {
 firebase.initializeApp(config);
 
 var dataRef = firebase.database();
-
-var name = 'Alan';
-var email = 'alan@alanmccabe.com';
-
-dataRef.ref("mapProject").push({
-
-    name: name,
-    email: email,
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
-});
-
-
-
-
-/*
-console.log(email, password);
-firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(user => {
-        alert('you succeeded')
-        //Handling the successful authentication.
-    }).catch(function (error) {
-        //Handling the error showcasing. });
-        alert('you failed. try again')
-    }, false);
-
-*/

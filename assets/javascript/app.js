@@ -6,6 +6,7 @@ var clues = [];
 var state = '';
 var marker = '';
 var message = '';
+var dataRef = [];
 var latitude2 = 0;
 var longitude2 = 0;
 var lineColor = '';
@@ -15,7 +16,6 @@ var coordinates = [];
 var lineColors = [];
 var population = 0;
 var infowindow = new google.maps.InfoWindow();
-var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 var audioElementwin = document.createElement("audio");
 audioElementwin.setAttribute("src", "assets/sounds/TaDa.mp3");
 var audioElementl = document.createElement("audio");
@@ -29,6 +29,13 @@ audioElementStartup.setAttribute("src", "assets/sounds/startup.wav");
 var audioElementSplash = document.createElement("audio");
 audioElementSplash.setAttribute("src", "assets/sounds/splash.wav");
 
+function refreshPage(){
+  window.location.reload();
+}
+
+// Determine user with sessionStorage
+var cityUser = sessionStorage.getItem("cityuser");
+console.log(cityUser);
 
 // Initialize google maps
 function initialize() {
@@ -64,7 +71,7 @@ function chooseTarget() {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
+    // console.log(response);
     latitude2 = response.results[0].geometry.location.lat;
     longitude2 = response.results[0].geometry.location.lng;
     getWeather();
@@ -193,7 +200,7 @@ function getDistance(latitude1, longitude1) {
   // Generate clue to give
   // redo loop to create table
   clueCountNumber = num - 2;
-  console.log(clues);
+  // console.log(clues);
   if (clueCountNumber < clues.length) {
     clueTable = "<table>";
     clueTable += "<tbody>";
@@ -221,6 +228,18 @@ function foundIt() {
   }
   var gnum = num - 1;
   $("#win-display").text(message + " - " + gnum + " tries!!");
+
+  // Put in firebase
+  var dataRef = firebase.database();
+  // var email = 'alan@alanmccabe.com';
+
+  dataRef.ref("mapProject").push({
+
+    email: cityUser,
+    score: gnum,
+    state: theState,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
 }
 
 // ACCESS CLUES IN THIS AREA -----------------------------------
@@ -255,9 +274,10 @@ function getWeather() {
   })
 };
 
+// Giffy here to put on page
 function getGif() {
-  var gifnum = Math.floor(Math.random() * 10);
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=r&api_key=dc6zaTOxFJmzC&limit=10";
+  var gifnum = Math.floor(Math.random() * 20);
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=pg&api_key=dc6zaTOxFJmzC&limit=20";
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -268,6 +288,5 @@ function getGif() {
   });
 }
 
-// Begin program here to choose target
 chooseTarget();
 google.maps.event.addDomListener(window, "load", initialize);
