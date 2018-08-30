@@ -1,22 +1,23 @@
-var geocoder;
 var map;
-var infowindow = new google.maps.InfoWindow();
-var latitude2 = 0;
-var longitude2 = 0;
-var oldDistance = 0;
 var num = 1;
-var message = '';
 var val = '';
-var coordinates = [];
-var lineColor = '';
-var lineColors = [];
-var population = 0;
+var geocoder;
+var clues = [];
 var state = '';
 var marker = '';
-var clues = [];
-var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-var audioElementw = document.createElement("audio");
-audioElementw.setAttribute("src", "assets/sounds/TaDa.mp3");
+var message = '';
+var dataRef = [];
+var latitude2 = 0;
+var longitude2 = 0;
+var lineColor = '';
+var oldDistance = 0;
+var clueMessage = '';
+var coordinates = [];
+var lineColors = [];
+var population = 0;
+var infowindow = new google.maps.InfoWindow();
+var audioElementwin = document.createElement("audio");
+audioElementwin.setAttribute("src", "assets/sounds/TaDa.mp3");
 var audioElementl = document.createElement("audio");
 audioElementl.setAttribute("src", "assets/sounds/beep-10.mp3");
 var audioElementWarmer = document.createElement("audio");
@@ -28,6 +29,9 @@ audioElementStartup.setAttribute("src", "assets/sounds/startup.wav");
 var audioElementSplash = document.createElement("audio");
 audioElementSplash.setAttribute("src", "assets/sounds/splash.wav");
 
+// Determine user with sessionStorage
+var cityUser = sessionStorage.getItem("cityuser");
+console.log(cityUser);
 
 // Initialize google maps
 function initialize() {
@@ -38,6 +42,7 @@ function initialize() {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
   google.maps.event.addListener(map, 'click', function (e) {
+    map.setOptions({ draggableCursor: 'crosshair' });
     markerText = "Guess # " + num;
     formStr = "<input type='hidden' id='text4mrkr' value='" + markerText + "' /><input type='button' value='" + markerText + "' onclick='addPlace();' />"
     infowindow.setContent(formStr);
@@ -50,6 +55,7 @@ function initialize() {
 
 // Initialize the location on the map
 function chooseTarget() {
+
   // Get city
   targetCity = Math.floor(Math.random() * 40) + 1;
   // targetCity = 1;
@@ -61,7 +67,7 @@ function chooseTarget() {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
+    // console.log(response);
     latitude2 = response.results[0].geometry.location.lat;
     longitude2 = response.results[0].geometry.location.lng;
     getWeather();
@@ -94,35 +100,47 @@ function addPlace() {
     });
     flightPath.setMap(map);
   }
+
+  // Find where the marker is - state, Canada, ocean
   streetLocation = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + newLat + "," + newLng + "&key=AIzaSyCwNeT8z4JXX1AvxPPQZVxcBxpAbmqkf0c&sensor=false";
   $.ajax({
     url: streetLocation,
     method: "GET"
   }).then(function (response) {
-    console.log(response.results);
+    // console.log(response.results);
     stateArrayLength = response.results.length;
+    // console.log("SAL: " + stateArrayLength);
     statePos = stateArrayLength - 2;
-    console.log(statePos);
+    countryPos = stateArrayLength - 1;
+    if (stateArrayLength) {
+      country = response.results[countryPos].address_components[0].long_name;
+      state = response.results[statePos].address_components[0].long_name;
+    }
+    // console.log(statePos);
+    // console.log(countryPos);
     if (statePos < 0) {
       image = 'assets/images/swimming.png';
       audioElementSplash.play();
+    } else if (country === "Canada") {
+      // image = "assets/images/stateFlags/canada-flag-icon-32.png";
+      image = "http://icons.iconarchive.com/icons/custom-icon-design/all-country-flag/32/Canada-Flag-icon.png";
+      audioElementl.play();
     } else {
-      state = response.results[statePos].address_components[0].long_name;
-      console.log(state);
+      // console.log(state);
       if (state !== '') {
         state = state.replace(" ", "-");
-        image = "assets/images/stateFlags/" + state + "-Flag-32.png";
+        // image = "assets/images/stateFlags/" + state + "-Flag-32.png";
+        image = "http://icons.iconarchive.com/icons/custom-icon-design/american-states/32/" + state + "-Flag-icon.png";
       }
     }
 
-    // Create marker here
+    // Create marker here with state flag
     marker = new google.maps.Marker({
       map: map,
       animation: google.maps.Animation.DROP,
       position: infowindow.getPosition(),
       icon: image
     });
-
 
     // Place marker on map
     marker.htmlContent = document.getElementById('text4mrkr').value;
@@ -137,7 +155,7 @@ function addPlace() {
   });
 }
 
-// Function to find distance and tell hot or cold
+// Function to find distance and tell hot or cold (line color) and audio sound
 function getDistance(latitude1, longitude1) {
   var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(latitude1, longitude1), new google.maps.LatLng(latitude2, longitude2));
   if (distance < 50000) {
@@ -176,16 +194,26 @@ function getDistance(latitude1, longitude1) {
   $("#result-display").text(message);
 
   // Generate clue to give
-  if (num < clues.length) {
-    fieldFix = clues[num].field.replace('_',' ');
-    clueMessage = fieldFix + " is " + clues[num].value;
-    $("#clue-display").text(clueMessage);
+  // redo loop to create table
+  clueCountNumber = num - 2;
+  // console.log(clues);
+  if (clueCountNumber < clues.length) {
+    clueTable = "<table>";
+    clueTable += "<tbody>";
+    for (var i = 0; i < clueCountNumber + 1; i++) {
+      fieldFix = clues[i].field.replace('_', ' ');
+      clueTable += "<tr><td>" + fieldFix + "</td><td>" + clues[i].value + "</td></tr>"
+    }
+    clueTable += "</tbody>";
+    clueTable += "</table>";
+    $("#clue-display").html(clueTable);
   }
+
 }
 
 // Once location is found, we can let them know
 function foundIt() {
-  audioElementw.play();
+  audioElementwin.play();
   // console.log(theState);
   if (theState === "Hawaii" || theState === "Alaska") {
     map.setCenter(new google.maps.LatLng(40, -120));
@@ -196,6 +224,18 @@ function foundIt() {
   }
   var gnum = num - 1;
   $("#win-display").text(message + " - " + gnum + " tries!!");
+
+  // Put in firebase
+  var dataRef = firebase.database();
+  // var email = 'alan@alanmccabe.com';
+
+  dataRef.ref("mapProject").push({
+
+    email: cityUser,
+    score: gnum,
+    state: theState,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
 }
 
 // ACCESS CLUES IN THIS AREA -----------------------------------
@@ -230,10 +270,10 @@ function getWeather() {
   })
 };
 
-
+// Giffy here to put on page
 function getGif() {
-  var gifnum = Math.floor(Math.random() * 10);
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=r&api_key=dc6zaTOxFJmzC&limit=10";
+  var gifnum = Math.floor(Math.random() * 20);
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + state + "&rating=pg&api_key=dc6zaTOxFJmzC&limit=20";
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -244,16 +284,29 @@ function getGif() {
   });
 }
 
-$('#startBtn').on('click', function(){
-	$(this).hide();
-	initialize();
-});
+// Search database for high scores
+function updateChart() {
+  var dataRef = firebase.database().ref().child('mapProject');
 
-$('#backBtn').on('click', function(){
-	$(this).hide();
-	initialize();
-});
+  dataRef.on("value", function (childSnapshot) {
+    // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
+    //dataRef.ref("mapProject").on("value", function (childSnapshot) {
+    data.forEach(function(childS) {
+      console.log(childS.val().score);
+    })
+    // console.log("PAST: " + childSnapshot.val());
+    // var dateAdded = childSnapshot.val().dateadded;
+    //   var score = childSnapshot.val().score;
+    //   var state = childSnapshot.val().state;
+    //   console.log("PAST: " + dateAdded + " " + score + " " + state);
+
+  }, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
+}
+
 
 // Begin program here to choose target
+updateChart();
 chooseTarget();
 google.maps.event.addDomListener(window, "load", initialize);

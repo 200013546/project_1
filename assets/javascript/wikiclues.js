@@ -50,7 +50,7 @@ $.ajax({
 
                         // Sanatize value from wikipedia
                         wikiField = contentArray[i].replace(/[#|_\[\]\{\}]/g, '').trim();
-                        wikiField = wikiField.replace(theState, "XXXXXX");
+                        wikiField = wikiField.replace(theState, '("State")');
                         wikiFieldArray = wikiField.split("=");
                         window[wikiItems[j]] = wikiFieldArray[1].trim();
                         // console.log("THIS:::" + wikiItems[j] + ": " + window[wikiItems[j]]);
