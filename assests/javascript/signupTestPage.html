@@ -7,7 +7,7 @@
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Sign Up</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script> -->
@@ -17,18 +17,16 @@
     <div id="container">
         <label for="email-input">email address:</label>
         <input id="email-input" label="Email address">
-        <label for="hometown-input">Hometown:</label>
-        <input id="hometown-input" label="Your hometown">
         <label for="password1-input">Create a password:</label>
-        <input id="password1-input" label="Create a password">
+        <input id="password1-input" type="password">
         <label for="password2-input">Re-enter password:</label>
-        <input id="password2-input" label="Re-Enter your password">
-        <button id="submit1" text="Join">Join</button>
+        <input id="password2-input" type="password">
+        <button id="submit1" >Join</button>
 
         <div id="response"></div>
 
     </div>
-    <!-- scripts js file start here-->
+    <!-- scripts js file start here Ronald Chaudry-->
 
         <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
         <script>
@@ -43,55 +41,69 @@
           };
           firebase.initializeApp(config);
      
-//////////// new variables ronald.chaudry\\\\\\\\\\\\\
+//new variables
 var db = firebase.database();
 var email = "";
-var hometown = "";
 var password1 = "";
 var password2 = "";
-///////////End new variables\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-////////////SignUp ronald.chaudry\\\\\\\\\\\\
-$("#submit1").on("click", function (events) { //signUp () {
+//sign-UP by clicking JOIN
+$("#submit1").on("click", function (events) {
   email = $("#email-input").val().trim();
-  hometown = $("#hometown-input").val().trim();
   password1 = $("#password1-input").val().trim();
   password2 = $("#password2-input").val().trim();
 
-  /// checking password////
-  if (password1 != password2) {
-    alert("Your passwords did not match")
-  }
-  else {
-    validateEmail();
+    // checking passwords match
+    if (password1 != password2) {
+        $("#response").text("The passwords entered did not match");
+        console.log("The passwords entered did not match. User " + email + " was NOT created!");
     }
+    else {
+        validateLength();
+        }
+
+    // Validate password length
+    function validateLength () {
+    if (password1.length < 5) {
+        $("#response").text("The password must be at least 5 characters long.");    
+        console.log("The passwords entered is too short. User " + email + " was NOT created!");    
+    } else {
+        //console.log("Password meets requirement!")
+        validateEmail();
+    }
+    }
+
     //Check if it's a valid emailaddress
     function validateEmail() {
-        console.log("The email address submitted is " + email);
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if(email.match(mailformat)) {
-            console.log("The address "+ email + " submitted is in email address format");
+        if (email.match(mailformat)) {
+            console.log("Email address provided ("+ email + ") meets email address format");
+            console.log("Password meets requirement!")
+            console.log("Creating new user " + email + " in database");
             dbWrite();
         }
         else
         {
         $("#response").text(email + " is not a valid email address");
-
-        }                                       ///rchaud-it still registers if passwords dont match
+        console.log("The email address provided (" + email + ") is invalid");
+        }
     }
 
+//create user in firebase
 function dbWrite() {
-db.ref('/users').set({
+    db.ref('/users').push({
           email: email,
           password: password1,
-          hometown: hometown,
+          highScore: 0,
       }, function (errorObject) {
           console.log("Error returned: " + errorObject);// Doesnt seem to like "code);""
       });
+        $("#email-input").val("");
+        $("#password1-input").val("");
+        $("#password2-input").val("");
+        $("#response").text("Your registration is complete!");
     }
 });
-        
-    </script>
-    
+    </script> 
 </body>
 </html>

@@ -105,7 +105,7 @@ main section h1 {
   justify-content: center;
   padding: 12px;
   /* color: #DFB72C; */
-  color: #0052cc;
+  color: navy;
   font-size: 28px;
   line-height: 1;
   text-align: center;
@@ -157,7 +157,7 @@ main section form fieldset div label {
   padding: 6px 9px;
   /* background: #DFB72C; */
 
-  background: #0052cc;
+  background: navy;
   /* background: #DFB72C; */
   color: white;
   font-size: 16px;
@@ -167,7 +167,7 @@ main section form fieldset div label {
 main section form fieldset div input {
   display: block;
   background: white;
-  border: 1px solid #0052cc;
+  border: 1px solid navy;
 
   /* border: 1px solid #DFB72C; */
   border-left: 0;
@@ -256,7 +256,7 @@ main section form input[type="submit"] {
   font-size: 24px;
   text-transform: lowercase;
   line-height: 2;
-  background: #0052cc;
+  background: navy;
 
   /* background: #DFB72C; */
   color: white;
@@ -483,8 +483,7 @@ main.on-enter section form input[type="submit"] {
     align-items: center;
     align-content: center;
     justify-content: center;
-    /* background: #52504e; */
-    background: #b5b3b0;
+    background: #52504e;
   }
 
   main {
