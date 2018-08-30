@@ -1,49 +1,76 @@
 html, body{
-	background-image: url("../images/cityImage.jpg");
+	background-image: url("../images/intro-background.jpg");
+	background-size: 100%
 }
 
+.jumbotron{
+	padding: 10px;
+	background-color: black;
+	color: white;
+	height: 70px;
+	float: top;
+}
+
+.container {
+		float: top;
+		float: right;
+	}
+
+a {
+	float: top;
+	float: right;
+}
+
+#gifs-view {
+float: right;
+margin: 10px;
+margin-right: 30px;
+}
+
+#clue-display {
+	font-size: 20px;
+	color: yellow;
+	background-color: transparent;
+	padding: 10px;
+}
 #map_canvas {
-  height: 400px;
-  width: 600px;
-  margin: 0px;
-  padding: 0px;
+	height: 600px;          
+	width: 700px;
+	border-radius: 50px;
+	margin: 20px;
+	float: right;
 }
 
 #win-display{
-  color: #ffffff;
+	background-color: transparent;
+	color: rgb(250, 3, 3);
+	font-size: 100px;
+	padding: 10px;
+	margin-left: 100px;
+	float: right;
 }
 
 #result-display{
-  color: #ffffff;
-}
-
-#weather-display{
-  color: #ffffff;
-}
-
-#coordinates-display{
-  color: #ffffff;
+	background-color:transparent;
+	color: rgb(3, 250, 3);
+	font-size: large;
+	margin-left: 700px;
 }
 
 .btn-primary {
-	background-color: blue;
-	color: white;
-	font-family: 'Hanalei Fill';
-	font-family: 'Righteous';
-	font-size: 40px;
-	padding-left: 10px;
-	padding-right:10px;
-	margin-top: 200px;
-	float: left;
-	border-radius: 20px;
-	border-color: blue
+	font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 32px;
+  border-radius: 5px;
+  transition: 0.5s;
+  margin: 10px;
+  color: #fff;
+  background-color: #0b5f7a;
 }
+
 .btn-primary:hover {
-	background-color: #f86502;
+	color: #fff;
+	background: #699aaa;
 }
-.map_canvas {
-	height: 500px;          
-	width: 700px;
-	border-block-end-style: outset;
-	border-radius: 30px;
-  }

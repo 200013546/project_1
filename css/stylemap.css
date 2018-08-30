@@ -15,14 +15,6 @@ body,
   color: #ffffff;
 }
 
-#weather-display{
-  color: #ffffff;
-}
-
-#coordinates-display{
-  color: #ffffff;
-}
-
 .container {
 	font-size: 15px;
 	font-weight: bold;
@@ -39,7 +31,6 @@ body,
   .container:hover {
 	  color: #fff;
 	  background: #699aaa;
-
 }
 
 .map_canvas {
